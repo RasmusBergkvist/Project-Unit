@@ -1,0 +1,12 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 153" width="225" height="153">
+	<defs>
+		<image width="96" height="96" id="img1" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgZmlsbD0iI2ZmZmZmZiIgdmlld0JveD0iMCAwIDI1NiAyNTYiPjxwYXRoIGQ9Ik0yNTEuNzYsODguOTRsLTEyMC02NGE4LDgsMCwwLDAtNy41MiwwbC0xMjAsNjRhOCw4LDAsMCwwLDAsMTQuMTJMMzIsMTE3Ljg3djQ4LjQyYTE1LjkxLDE1LjkxLDAsMCwwLDQuMDYsMTAuNjVDNDkuMTYsMTkxLjUzLDc4LjUxLDIxNiwxMjgsMjE2YTEzMCwxMzAsMCwwLDAsNDgtOC43NlYyNDBhOCw4LDAsMCwwLDE2LDBWMTk5LjUxYTExNS42MywxMTUuNjMsMCwwLDAsMjcuOTQtMjIuNTdBMTUuOTEsMTUuOTEsMCwwLDAsMjI0LDE2Ni4yOVYxMTcuODdsMjcuNzYtMTQuODFhOCw4LDAsMCwwLDAtMTQuMTJaTTEyOCwyMDBjLTQzLjI3LDAtNjguNzItMjEuMTQtODAtMzMuNzFWMTI2LjRsNzYuMjQsNDAuNjZhOCw4LDAsMCwwLDcuNTIsMEwxNzYsMTQzLjQ3djQ2LjM0QzE2My40LDE5NS42OSwxNDcuNTIsMjAwLDEyOCwyMDBabTgwLTMzLjc1YTk3LjgzLDk3LjgzLDAsMCwxLTE2LDE0LjI1VjEzNC45M2wxNi04LjUzWk0xODgsMTE4Ljk0bC0uMjItLjEzLTU2LTI5Ljg3YTgsOCwwLDAsMC03LjUyLDE0LjEyTDE3MSwxMjhsLTQzLDIyLjkzTDI1LDk2LDEyOCw0MS4wNywyMzEsOTZaIj48L3BhdGg+PC9zdmc+"/>
+	</defs>
+	<style>
+		.s0 { fill: #3178c6 } 
+		.s1 { fill: #ffffff } 
+	</style>
+	<use id="graduation-cap" href="#img1" transform="matrix(.91,0,0,.91,71,12)"/>
+	<path id="{    }" class="s0" aria-label="{    }"  d="m49 17.1l2.3 6.8q-7.1 2.3-9.9 8-2.7 5.7-2.7 13.1v12.4q0 6.1-2.4 11-2.4 4.8-7.7 7.7-5.2 2.9-13.8 2.9v-7.3q6.8 0 9.8-3.9 3-3.8 3-10.4v-12.4q0-6.3 1.9-11.8 2-5.5 6.6-9.6 4.7-4.2 12.9-6.5zm2.3 111l-2.3 6.9q-8.2-2.4-12.9-6.5-4.6-4.1-6.6-9.6-1.9-5.5-1.9-11.8v-12.4q0-4.4-1.3-7.6-1.4-3.2-4.2-4.9-2.8-1.8-7.3-1.8v-7.3q8.6 0 13.8 2.8 5.3 2.9 7.7 7.9 2.4 4.8 2.4 10.9v12.4q0 4.9 1.2 9.1 1.2 4.2 3.9 7.3 2.8 3.1 7.5 4.6zm124.9-104.2l2.3-6.8q8.3 2.3 12.9 6.5 4.7 4.1 6.6 9.6 1.9 5.5 1.9 11.8v12.4q0 4.4 1.3 7.6 1.4 3.2 4.1 4.9 2.9 1.8 7.4 1.8v6.8q-8.5 0-13.8-2.7-5.3-2.8-7.7-7.5-2.4-4.8-2.4-10.9v-12.4q0-4.9-1.2-9.1-1.1-4.3-3.9-7.3-2.7-3.2-7.5-4.7zm2.3 111.1l-2.3-6.9q4.7-1.5 7.4-4.6 2.8-3.1 4-7.3 1.2-4.2 1.2-9.1v-12.4q0-6.1 2.4-10.8 2.4-4.8 7.7-7.5 5.3-2.7 13.8-2.7v6.7q-6.8 0-9.8 3.9-3 3.8-3 10.4v12.4q0 6.3-1.9 11.8-1.9 5.5-6.6 9.6-4.6 4.1-12.9 6.5z"/>
+	<path id="UNIT" class="s1" aria-label="UNIT"  d="m91.8 121.6v-19h4.9v19q0 3.2-1.4 5.4-1.4 2.2-3.8 3.3-2.4 1.1-5.4 1.1-3 0-5.5-1.1-2.4-1.1-3.7-3.3-1.4-2.2-1.4-5.4v-19h4.9v19q0 2 0.7 3.3 0.7 1.4 2 2 1.3 0.6 3 0.6 1.8 0 3.1-0.6 1.2-0.6 1.9-2 0.7-1.3 0.7-3.3zm27.8-19h4.8v28.4h-4.9l-12.7-20.4v20.4h-4.9v-28.4h4.9l12.8 20.4zm11.6 0h4.9v28.4h-4.9zm16.5 0h4.9v28.5h-4.9zm-8.8 0h22.6v3.8h-22.6z"/>
+</svg>

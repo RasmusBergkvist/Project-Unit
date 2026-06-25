@@ -1,3 +1,10 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+/********************************************/
+/************ HERO SECTION *****************/
+/*******************************************/
+
 .hero {
     background-image: url(/students.webp);
     background-repeat: no-repeat;
@@ -14,6 +21,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    margin: 0 auto;
     margin-top: 50px;
 
     section {
@@ -23,32 +31,103 @@
         min-height: 200px;
         padding: 2rem;
         background-color: rgba(7, 13, 26, 0.75);
-        border: 1px solid #314A75;
+        border: 1px solid $secondary-color;
         border-radius: 12px;
 
         a {
-            display: inline-flex;
+            @include nav-button;
             align-self: center;
-            text-decoration: none;
-            margin-top: 30px;
-            gap: 4px;
-            font-size: 1rem;
-            padding: 10px 16px;
-            background-color: rgb(49, 120, 198);
-            color: white;
+        }
+
+    }
+}
+
+/********************************************/
+/************** FACT SECTION ***************/
+/******************************************/
+
+
+.fact {
+    margin: 30px auto;
+    max-width: 800px;
+    width: 100%;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: $primary-color;
+    }
+
+    .fact-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+    }
+
+    .fact-card {
+        text-align: center;
+        padding: 16px 24px;
+        width: 100%;
+        background-color: $primary-color;
+        border: 1px solid $secondary-color;
+        border-radius: 12px;
+
+    }
+}
+
+
+/************************************************/
+/************** SCHEDULE SECTION ***************/
+/**********************************************/
+
+.index-schedule {
+    margin: 30px auto;
+    max-width: 800px;
+    width: 100%;
+    background-color: $secondary-color;
+    border-radius: 12px;
+    padding: 25px;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .schedule-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+
+        .schedule-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 1rem;
             border-radius: 10px;
-            transition: all 0.3s ease;
-
-            .material-symbols-outlined {
-                font-size: 20px;
-            }
-
+            border: 1px solid $border-light;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
 
             &:hover {
                 transform: translateY(-3px);
-                box-shadow: 0 0 20px rgba(49, 120, 198, 0.4);
+                box-shadow: 0 10px 30px rgba(49, 120, 198, 0.3),
+                    0 0 18px rgba(49, 120, 198, 0.25);
+            }
+
+
+            h3 {
+                font-size: 16px;
+            }
+
+            span {
+                align-self: flex-start;
+                background-color: $badge;
+                border: 1px solid $badge-border;
+                padding: 2px 8px;
+                border-radius: 6px;
+                font-size: 0.8rem;
             }
         }
-
     }
 }

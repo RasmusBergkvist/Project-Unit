@@ -1,0 +1,24 @@
+@use 'variables' as *;
+
+@mixin nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    margin-top: 30px;
+    padding: 10px 16px;
+    background-color: $primary-color;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 20px rgba(49, 120, 198, 0.4);
+    }
+
+    .material-symbols-outlined {
+        font-size: 20px;
+    }
+}

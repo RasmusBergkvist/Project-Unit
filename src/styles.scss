@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +11,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #070D1A;
+    background-color: $background-darker;
     width: 100%;
     max-height: 130px;
     padding: 1rem;
@@ -24,7 +26,7 @@ header {
 }
 
 body {
-    background: #0D1729;
+    background: $background;
     font-family: "Roboto", sans-serif;
     line-height: 1.5;
 }

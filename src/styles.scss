@@ -26,9 +26,16 @@ header {
 body {
     background: #0D1729;
     font-family: "Roboto", sans-serif;
+    line-height: 1.5;
 }
 
-h1,
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: 1rem;
+}
+
+h1, h2, h3,
 p {
     color: white;
 }

@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-radius: 24px;
+    border-radius: 12px;
 
     width: 100%;
     max-width: 1100px;
@@ -82,7 +82,7 @@
 
 .index-schedule {
     margin: 30px auto;
-    max-width: 800px;
+    max-width: 1100px;
     width: 100%;
     background-color: $secondary-color;
     border-radius: 12px;
@@ -129,5 +129,27 @@
                 font-size: 0.8rem;
             }
         }
+    }
+}
+
+/********************************************/
+/************** ABOUT SECTION **************/
+/******************************************/
+.about {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    margin: 30px auto;
+    max-width: 1100px;
+    width: 100%;
+    background-color: $secondary-color;
+    border-radius: 12px;
+    padding: 25px;
+    
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
     }
 }

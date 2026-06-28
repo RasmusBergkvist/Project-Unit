@@ -14,7 +14,7 @@
 
     width: 100%;
     max-width: 1100px;
-    height: 600px;
+    height: 500px;
 
     display: flex;
     flex-direction: column;
@@ -138,18 +138,40 @@
 .about {
     display: grid;
     grid-template-columns: 1fr 400px;
+    grid-template-areas: "text image";
     margin: 30px auto;
     max-width: 1100px;
     width: 100%;
-    background-color: $secondary-color;
     border-radius: 12px;
     padding: 25px;
-    
 
-    img {
+    .about-text {
+        grid-area: text;
+    }
+
+
+    .about-img {
+        grid-area: image;
         width: 100%;
         height: auto;
         border-radius: 8px;
         object-fit: cover;
     }
+
+
+}
+
+@media(max-width: 768px) {
+    .about {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 5px;
+        grid-template-areas: 
+        "image" 
+        "text";
+
+
+    }
+
 }

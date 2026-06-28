@@ -37,13 +37,17 @@ body {
     padding-inline: 1rem;
 }
 
-h1, h2, h3,
+h1, h2, h3, h4,
 p {
     color: white;
 }
 
 h1 {
     font-weight: 300;
+}
+
+h4 {
+    font-size: 1.1rem;
 }
 
 p {

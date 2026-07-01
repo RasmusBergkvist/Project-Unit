@@ -1,4 +1,5 @@
 @use 'mixins' as *;
+@use 'variables' as *;
 
 nav {
 
@@ -8,9 +9,44 @@ nav {
         list-style: none;
 
 
-        a {
-           @include nav-button;
 
+        a {
+            @include nav-button;
+
+                  &.current {
+                         background-color: rgba(255, 255, 255, 0.15);
+                    }
+        }
+
+
+
+    }
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        height: 100%;
+
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            height: 100%;
+
+
+            li {
+              
+                a {
+                    @include mobile-nav-button;
+                    font-size: 12px;
+
+              
+
+                }
+            }
         }
     }
+
 }

@@ -5,6 +5,7 @@ import { Schedule } from './pages/schedule/schedule';
 
 export const routes: Routes = [
     {path:"", component: Home},
+    {path:"home", component: Home},
     {path: "courses", component: Courses},
     {path: "kurser", component: Courses},
     {path: "schedule", component: Schedule},

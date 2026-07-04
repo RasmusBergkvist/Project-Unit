@@ -83,6 +83,7 @@ footer {
         flex-direction: column;
         gap: 2rem;
         text-align: center;
+        padding-bottom: 140px;
 
         .contact,
         .social-container {
@@ -93,6 +94,11 @@ footer {
             .social-icons {
                 justify-content: center;
             }
+        }
+
+        //Döljer footer-logo på mobiler.
+        .footer-logo {
+            display: none;
         }
     }
 }

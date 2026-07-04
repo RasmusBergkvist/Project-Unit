@@ -34,7 +34,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/styles"
+                "src/styles-partials"
             ]
           }
           },

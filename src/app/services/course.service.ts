@@ -14,6 +14,6 @@ export class CourseService {
   //Hämtar kurserna 
   async getCourses(): Promise<Course[]> {
     const courses = this.http.get<Course[]>(this.url)
-    return firstValueFrom(courses);
+    return await firstValueFrom(courses);
   }
 }

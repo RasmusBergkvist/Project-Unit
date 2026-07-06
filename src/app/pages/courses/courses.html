@@ -1,1 +1,49 @@
-<p>courses works!</p>
+<div class="page-course">
+    <section class="top-section">
+        <h2>Kurser</h2>
+        <p>Här hittar du hela vårt kursutbud. Du kan söka eller filtrera fram kurserna.</p>
+
+        @if(error()) {
+        <div class="error">
+            <span class="material-symbols-outlined">
+                error
+            </span>
+            <p class="errorText">{{error()}}</p>
+        </div>
+        }
+    </section>
+
+
+    <section class="course-container">
+        @for(course of courses(); track $index) {
+        <!-- Här skrivs kurserna ut-->
+        <article class="course-card">
+            <div class="card-header">
+                <span class="badge">{{course.points}} HP</span>
+                <button class="add" aria-label="Lägg till i ramschema">
+                    <span class="material-symbols-outlined">add</span>
+                </button>
+             </div>
+            <h3><span class="code">{{course.courseCode}}</span> {{course.courseName}}</h3>
+
+            <ul class="course-info">
+                <li><strong>Ämne:</strong> {{course.subject}} ({{course.subjectCode}})</li>
+
+                <!--Skriver ut förkortningar på nivå -->
+                @if(course.level === "GR") {
+                <li><strong>Nivå: </strong> Grundläggande</li>
+                } @else if(course.level === "AV") {
+                <li><strong>Nivå: </strong> Avancerad</li>
+                } @else if(course.level) {
+                <li><strong>Nivå: </strong> {{course.level}}</li>
+                }
+
+                <li><strong>Progression: </strong>{{course.progression}}</li>
+                <li><strong>Institution: </strong>{{course.institutionCode}}</li>
+            </ul>
+            <a [href]="course.syllabus" target="_blank" rel="noopener noreferrer">Visa kursplan</a>
+        </article>
+        }
+
+    </section>
+</div>

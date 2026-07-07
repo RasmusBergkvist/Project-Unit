@@ -11,11 +11,22 @@
             <p class="errorText">{{error()}}</p>
         </div>
         }
+
+        <label>
+            <input type="text" [(ngModel)]="filterText">
+            <span [class.searching]="filterText()">Sök kurs</span>
+        </label>
+
+        <!-- Antal kurser som visas-->
+        @if(!error()) {
+        <p>Visar {{filterCourses().length}} av {{courses().length}} kurser.</p>
+        }
     </section>
 
 
+
     <section class="course-container">
-        @for(course of courses(); track $index) {
+        @for(course of filterCourses(); track $index) {
         <!-- Här skrivs kurserna ut-->
         <article class="course-card">
             <div class="card-header">
@@ -23,7 +34,7 @@
                 <button class="add" aria-label="Lägg till i ramschema">
                     <span class="material-symbols-outlined">add</span>
                 </button>
-             </div>
+            </div>
             <h3><span class="code">{{course.courseCode}}</span> {{course.courseName}}</h3>
 
             <ul class="course-info">
@@ -43,6 +54,11 @@
             </ul>
             <a [href]="course.syllabus" target="_blank" rel="noopener noreferrer">Visa kursplan</a>
         </article>
+        } @empty {
+            <!-- Om sökning inte matchar kursnamn eller kurskod-->
+        @if(!error()) {
+        <p class="no-match">Inga kurser hittades som matchar: {{filterText()}}</p>
+        }
         }
 
     </section>

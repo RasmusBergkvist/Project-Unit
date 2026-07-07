@@ -19,6 +19,55 @@
             text-align: center;
 
         }
+
+        label {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            margin-block: 1rem;
+
+            input[type="text"] {
+                width: 100%;
+                padding: 16px 12px 10px 12px;
+                font-size: 1rem;
+                border-radius: 12px;
+                background-color: $secondary-color;
+                border: 1px solid $badge-border;
+                color: $text-light;
+                outline: none;
+                transition: outline 0.2s ease;
+
+                &:focus {
+                    outline: 1px solid $primary-color;
+
+                    &+span {
+                        top: 0;
+                        font-size: 12px;
+                        color: $primary-color;
+                    }
+                }
+
+            }
+
+            span {
+                position: absolute;
+                top: 12px;
+                left: 14px;
+                color: $text-light;
+                margin-top: 0;
+                transition: all 0.2s ease;
+
+                &.searching {
+                    top: 0;
+                    font-size: 12px;
+                    color: $primary-color;
+
+                }
+            }
+
+
+
+        }
     }
 
 

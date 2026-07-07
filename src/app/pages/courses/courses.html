@@ -3,6 +3,7 @@
         <h2>Kurser</h2>
         <p>Här hittar du hela vårt kursutbud. Du kan söka eller filtrera fram kurserna.</p>
 
+         <!-- Felmeddelande-->
         @if(error()) {
         <div class="error">
             <span class="material-symbols-outlined">
@@ -12,15 +13,25 @@
         </div>
         }
 
+        <!-- Filtrering på kurskod och kursnamn-->
         <label>
             <input type="text" [(ngModel)]="filterText">
             <span [class.searching]="filterText()">Sök kurs</span>
         </label>
 
+         <!-- Filtrering på ämnen-->
+          <select [(ngModel)]="selectedSubject">
+            <option value="">Alla ämnen</option>
+            @for(subject of allSubjects(); track subject) {
+                <option [value]="subject">{{subject}}</option>
+            }
+          </select>
+
         <!-- Antal kurser som visas-->
         @if(!error()) {
         <p>Visar {{filterCourses().length}} av {{courses().length}} kurser.</p>
         }
+
     </section>
 
 
@@ -45,7 +56,11 @@
                 <li><strong>Nivå: </strong> Grundläggande</li>
                 } @else if(course.level === "AV") {
                 <li><strong>Nivå: </strong> Avancerad</li>
-                } @else if(course.level) {
+                }
+                @else if(course.level === "FO") {
+                <li><strong>Nivå: </strong> Forskarnivå</li>
+                }
+                 @else if(course.level) {
                 <li><strong>Nivå: </strong> {{course.level}}</li>
                 }
 

@@ -1,6 +1,7 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
+//Sidlayout
 .page-course {
     display: flex;
     flex-direction: column;
@@ -20,6 +21,7 @@
 
         }
 
+        //Filtrering av kurskod och kursnamn via input
         label {
             display: inline-block;
             position: relative;
@@ -68,10 +70,28 @@
 
 
         }
+
+        //Filtrering av ämne via select
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            background-color: $secondary-color;
+            color: $text-light;
+            font-size: 1rem;
+            font-family: "Roboto", sans-serif;
+            outline: none;
+            transition: outline 0.2s ease;
+            margin-bottom: 1rem;
+
+            &:focus {
+                outline: 1px solid $primary-color;
+            }
+        }
     }
 
 
-
+    //Kurslista
     .course-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -113,6 +133,7 @@
                     font-size: 1rem;
                 }
 
+                //Knapp: Lägg till i ramschemat
                 .add {
                     display: flex;
                     align-items: center;

@@ -3,33 +3,104 @@
         <h2>Kurser</h2>
         <p>Här hittar du hela vårt kursutbud. Du kan söka eller filtrera fram kurserna.</p>
 
-         <!-- Felmeddelande-->
+        <!-- Felmeddelande-->
         @if(error()) {
         <div class="error">
             <span class="material-symbols-outlined">
                 error
             </span>
-            <p class="errorText">{{error()}}</p>
+            <p class="error-text">{{error()}}</p>
         </div>
         }
 
-        <!-- Filtrering på kurskod och kursnamn-->
-        <label>
-            <input type="text" [(ngModel)]="filterText">
-            <span [class.searching]="filterText()">Sök kurs</span>
-        </label>
+            <div class="search-select">
 
-         <!-- Filtrering på ämnen-->
-          <select [(ngModel)]="selectedSubject">
-            <option value="">Alla ämnen</option>
-            @for(subject of allSubjects(); track subject) {
-                <option [value]="subject">{{subject}}</option>
-            }
-          </select>
+                <!-- Filtrering på kurskod och kursnamn-->
+                <label>
+                    <input type="text" [(ngModel)]="filterText">
+                    <span [class.searching]="filterText()">Sök kurs</span>
+                </label>
+
+                <!-- Filtrering på ämnen-->
+                <select [(ngModel)]="selectedSubject">
+                    <option value="">Alla ämnen</option>
+                    @for(subject of allSubjects(); track subject) {
+                    <option [value]="subject">{{subject}}</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Filtrering på nivå-->
+            <div class="level-container">
+                <label>
+                    <input type="checkbox" (change)="changeLevels('BE')">
+                    Behörighetsgivande
+                </label>
+                <label>
+                    <input type="checkbox" (change)="changeLevels('GR')">
+                    Grundläggande
+                </label>
+                <label>
+                    <input type="checkbox" (change)="changeLevels('AV')">
+                    Avancerad
+                </label>
+                <label>
+                    <input type="checkbox" (change)="changeLevels('FO')">
+                    Forskarnivå
+                </label>
+                <label>
+                    <input type="checkbox" (change)="changeLevels('X')">
+                    Övriga nivåer
+                </label>
+            </div>
+
+
+
+            <!-- Sortering i stigande och fallande ordning -->
+            <div class="sort-container">
+                <h3>Sortera efter</h3>
+                <button class="sort-button" [class.active]="sortBy() === 'courseCode'" (click)="changeSortOrder('courseCode')">Kurskod
+                    @if (sortBy() === "courseCode"){
+                    <span class="material-symbols-outlined">
+                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    </span>
+                    }@else {
+                    <span class="material-symbols-outlined inactive">swap_vert</span>
+                    }
+                </button>
+                <button class="sort-button" [class.active]="sortBy() === 'courseName'"  (click)="changeSortOrder('courseName')">Kursnamn
+                    @if (sortBy() === "courseName"){
+                    <span class="material-symbols-outlined">
+                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    </span>
+                    }@else {
+                    <span class="material-symbols-outlined inactive">swap_vert</span>
+                    }
+                </button>
+                <button class="sort-button" [class.active]="sortBy() === 'points'"  (click)="changeSortOrder('points')">Poäng
+                    @if (sortBy() === "points"){
+                    <span class="material-symbols-outlined">
+                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    </span>
+                    }@else {
+                    <span class="material-symbols-outlined inactive">swap_vert</span>
+                    }
+                </button>
+                <button class="sort-button" [class.active]="sortBy() === 'subject'"  (click)="changeSortOrder('subject')">Ämne
+                    @if (sortBy() === "subject"){
+                    <span class="material-symbols-outlined">
+                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    </span>
+                    }@else {
+                    <span class="material-symbols-outlined inactive">swap_vert</span>
+                    }
+                </button>
+            </div>
+    
 
         <!-- Antal kurser som visas-->
         @if(!error()) {
-        <p>Visar {{filterCourses().length}} av {{courses().length}} kurser.</p>
+        <p>Visar {{filterAndSortCourses().length}} av {{courses().length}} kurser.</p>
         }
 
     </section>
@@ -37,7 +108,7 @@
 
 
     <section class="course-container">
-        @for(course of filterCourses(); track $index) {
+        @for(course of filterAndSortCourses(); track course.courseCode + course.subjectCode) {
         <!-- Här skrivs kurserna ut-->
         <article class="course-card">
             <div class="card-header">
@@ -52,15 +123,19 @@
                 <li><strong>Ämne:</strong> {{course.subject}} ({{course.subjectCode}})</li>
 
                 <!--Skriver ut förkortningar på nivå -->
-                @if(course.level === "GR") {
+                @if(course.level === "BE") {
+                <li><strong>Nivå: </strong> Behörighetsgivande</li>
+                }
+                @else if(course.level === "GR") {
                 <li><strong>Nivå: </strong> Grundläggande</li>
-                } @else if(course.level === "AV") {
+                }
+                @else if(course.level === "AV") {
                 <li><strong>Nivå: </strong> Avancerad</li>
                 }
                 @else if(course.level === "FO") {
                 <li><strong>Nivå: </strong> Forskarnivå</li>
                 }
-                 @else if(course.level) {
+                @else if(course.level) {
                 <li><strong>Nivå: </strong> {{course.level}}</li>
                 }
 
@@ -70,7 +145,7 @@
             <a [href]="course.syllabus" target="_blank" rel="noopener noreferrer">Visa kursplan</a>
         </article>
         } @empty {
-            <!-- Om sökning inte matchar kursnamn eller kurskod-->
+        <!-- Om sökning inte matchar kursnamn eller kurskod-->
         @if(!error()) {
         <p class="no-match">Inga kurser hittades som matchar: {{filterText()}}</p>
         }

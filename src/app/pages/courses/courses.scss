@@ -5,90 +5,232 @@
 .page-course {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     margin: 30px auto;
     padding-inline: 1rem;
-    gap: 25px;
+    gap: 20px;
 
 
+    //Övre sektion med sortering och filtering
     .top-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 900px;
+        margin: 1.5rem auto;
+        width: 100%;
+        gap: 25px;
 
         h2,
         p {
             text-align: center;
 
+
         }
 
-        //Filtrering av kurskod och kursnamn via input
-        label {
-            display: inline-block;
-            position: relative;
+        //Felmeddelande
+        .error {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 10px;
+            background-color: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            padding: 8px 14px;
+            color: rgb(248, 113, 113);
+
+
+
+            .material-symbols-outlined {
+                font-size: 24px;
+            }
+
+            .error-text {
+                color: rgb(248, 113, 113);
+                margin: 0;
+            }
+
+        }
+
+        //Panel för filtrering och sotering
+        .search-select {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
             width: 100%;
-            margin-block: 1rem;
+            align-items: center;
+            gap: 1rem;
 
-            input[type="text"] {
-                width: 100%;
-                padding: 16px 12px 10px 12px;
-                font-size: 1rem;
-                border-radius: 12px;
-                background-color: $secondary-color;
-                border: 1px solid $badge-border;
-                color: $text-light;
-                outline: none;
-                transition: outline 0.2s ease;
+            @media(max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
 
-                &:focus {
-                    outline: 1px solid $primary-color;
 
-                    &+span {
+            //Filtrering av kurskod och kursnamn via input
+            label {
+                position: relative;
+
+
+                input[type="text"] {
+                    width: 100%;
+                    padding: 16px 12px 10px 12px;
+                    font-size: 1rem;
+                    border-radius: 12px;
+                    background-color: $secondary-color;
+                    border: 1px solid $badge-border;
+                    color: $text-light;
+                    outline: none;
+                    transition: outline 0.2s ease;
+
+                    &:focus {
+                        outline: 1px solid $primary-color;
+
+                        &+span {
+                            top: 0;
+                            font-size: 12px;
+                            color: $primary-color;
+                        }
+                    }
+
+                }
+
+                span {
+                    position: absolute;
+                    top: 12px;
+                    left: 14px;
+                    color: $text-light;
+                    transition: all 0.2s ease;
+
+                    &.searching {
                         top: 0;
                         font-size: 12px;
                         color: $primary-color;
+
                     }
                 }
 
             }
 
-            span {
-                position: absolute;
-                top: 12px;
-                left: 14px;
+            //Filtrering av ämne via select
+            select {
+                width: 100%;
+                height: auto;
+                padding: 12px;
+                border-radius: 12px;
+                border: 1px solid $badge-border;
+                background-color: $secondary-color;
                 color: $text-light;
-                margin-top: 0;
+                font-size: 1rem;
+                outline: none;
+                transition: outline 0.2s ease;
+
+                &:focus {
+                    outline: 1px solid $primary-color;
+                }
+            }
+
+        }
+
+        //Filtering av nivåer
+        .level-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+
+            .level-label {
+                margin-right: 8px;
+                font-size: 600;
+
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                background-color: $secondary-color;
+                color: $text-light;
+                border: 1px solid $badge-border;
+                border-radius: 24px;
+                padding: 8px 16px;
+                gap: 8px;
+                font-size: 14px;
+                cursor: pointer;
                 transition: all 0.2s ease;
 
-                &.searching {
-                    top: 0;
-                    font-size: 12px;
-                    color: $primary-color;
+                &:hover {
+                    border-color: rgba($primary-color, 0.5);
+                    background-color: rgba($secondary-color, 0.7);
+                }
 
+                input[type="checkbox"] {
+                    width: 16px;
+                    height: 16px;
+                    border: 1px solid $badge-border;
+                    background-color: $secondary-color;
+                    border-radius: 12px;
+                }
+            }
+
+        }
+
+        //Sorteringspanel
+        .sort-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            h3 {
+                text-align: center;
+                width: 100%;
+                font-size: 16px;
+                font-weight: 400;
+
+            }
+
+
+        }
+
+        //Sorteringsknappar
+        .sort-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            background-color: transparent;
+            color: $text-light;
+            font-family: "Roboto", sans-serif;
+            border: 1px solid $border-light;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            .material-symbols-outlined {
+                font-size: 18px;
+
+                &.inactive {
+                    opacity: 0.6;
+                }
+            }
+
+            &:hover {
+                background-color: rgba($border-light, 0.2);
+            }
+
+            &.active {
+                background-color: $primary-color;
+                border: 1px solid $badge-border;
+
+                &:hover {
+                    background-color: darken($primary-color, 20%);
                 }
             }
 
 
-
         }
 
-        //Filtrering av ämne via select
-        select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            background-color: $secondary-color;
-            color: $text-light;
-            font-size: 1rem;
-            font-family: "Roboto", sans-serif;
-            outline: none;
-            transition: outline 0.2s ease;
-            margin-bottom: 1rem;
-
-            &:focus {
-                outline: 1px solid $primary-color;
-            }
-        }
     }
+
 
 
     //Kurslista

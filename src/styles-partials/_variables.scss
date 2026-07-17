@@ -1,8 +1,11 @@
+@use 'sass:color';
+
 /************************************/
 /************* Färger **************/
 /**********************************/
 
 $primary-color: #3178C6; 
+$primary-dark-color: #27609E;
 $secondary-color: #314A75;
 
 $background: #0D1729;
@@ -13,4 +16,11 @@ $border-light: #7F9BCD;
 $badge:rgba(255, 255, 255, 0.1);
 $badge-border:rgba(255, 255, 255, 0.2);
 
-$text-light:#FFF
+$text-light:#FFF;
+
+//Färger till knapparna lägg till (+) och ta bort (-)
+$add-button: #26705d;
+$add-button-border: #369f85;
+
+$remove-button: #883f3f;
+$remove-button-border: #c45b5b;

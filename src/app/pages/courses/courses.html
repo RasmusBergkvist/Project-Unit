@@ -13,90 +13,92 @@
         </div>
         }
 
-            <div class="search-select">
+        <div class="search-select">
 
-                <!-- Filtrering på kurskod och kursnamn-->
-                <label>
-                    <input type="text" [(ngModel)]="filterText">
-                    <span [class.searching]="filterText()">Sök kurs</span>
-                </label>
+            <!-- Filtrering på kurskod och kursnamn-->
+            <label>
+                <input type="text" [(ngModel)]="filterText">
+                <span [class.searching]="filterText()">Sök kurs</span>
+            </label>
 
-                <!-- Filtrering på ämnen-->
-                <select [(ngModel)]="selectedSubject">
-                    <option value="">Alla ämnen</option>
-                    @for(subject of allSubjects(); track subject) {
-                    <option [value]="subject">{{subject}}</option>
-                    }
-                </select>
-            </div>
+            <!-- Filtrering på ämnen-->
+            <select [(ngModel)]="selectedSubject">
+                <option value="">Alla ämnen</option>
+                @for(subject of allSubjects(); track subject) {
+                <option [value]="subject">{{subject}}</option>
+                }
+            </select>
+        </div>
 
-            <!-- Filtrering på nivå-->
-            <div class="level-container">
-                <label>
-                    <input type="checkbox" (change)="changeLevels('BE')">
-                    Behörighetsgivande
-                </label>
-                <label>
-                    <input type="checkbox" (change)="changeLevels('GR')">
-                    Grundläggande
-                </label>
-                <label>
-                    <input type="checkbox" (change)="changeLevels('AV')">
-                    Avancerad
-                </label>
-                <label>
-                    <input type="checkbox" (change)="changeLevels('FO')">
-                    Forskarnivå
-                </label>
-                <label>
-                    <input type="checkbox" (change)="changeLevels('X')">
-                    Övriga nivåer
-                </label>
-            </div>
+        <!-- Filtrering på nivå-->
+        <div class="level-container">
+            <label>
+                <input type="checkbox" (change)="changeLevels('BE')">
+                Behörighetsgivande
+            </label>
+            <label>
+                <input type="checkbox" (change)="changeLevels('GR')">
+                Grundläggande
+            </label>
+            <label>
+                <input type="checkbox" (change)="changeLevels('AV')">
+                Avancerad
+            </label>
+            <label>
+                <input type="checkbox" (change)="changeLevels('FO')">
+                Forskarnivå
+            </label>
+            <label>
+                <input type="checkbox" (change)="changeLevels('X')">
+                Övriga nivåer
+            </label>
+        </div>
 
 
+        <!-- Sortering i stigande och fallande ordning -->
+        <div class="sort-container">
+            <h3>Sortera efter</h3>
+            <button class="sort-button" [class.active]="sortBy() === 'courseCode'"
+                (click)="changeSortOrder('courseCode')">Kurskod
+                @if (sortBy() === "courseCode"){
+                <span class="material-symbols-outlined">
+                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                </span>
+                }@else {
+                <span class="material-symbols-outlined inactive">swap_vert</span>
+                }
+            </button>
+            <button class="sort-button" [class.active]="sortBy() === 'courseName'"
+                (click)="changeSortOrder('courseName')">Kursnamn
+                @if (sortBy() === "courseName"){
+                <span class="material-symbols-outlined">
+                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                </span>
+                }@else {
+                <span class="material-symbols-outlined inactive">swap_vert</span>
+                }
+            </button>
+            <button class="sort-button" [class.active]="sortBy() === 'points'" (click)="changeSortOrder('points')">Poäng
+                @if (sortBy() === "points"){
+                <span class="material-symbols-outlined">
+                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                </span>
+                }@else {
+                <span class="material-symbols-outlined inactive">swap_vert</span>
+                }
+            </button>
+            <button class="sort-button" [class.active]="sortBy() === 'subject'"
+                (click)="changeSortOrder('subject')">Ämne
+                @if (sortBy() === "subject"){
+                <span class="material-symbols-outlined">
+                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                </span>
+                }@else {
+                <span class="material-symbols-outlined inactive">swap_vert</span>
+                }
+            </button>
+        </div>
 
-            <!-- Sortering i stigande och fallande ordning -->
-            <div class="sort-container">
-                <h3>Sortera efter</h3>
-                <button class="sort-button" [class.active]="sortBy() === 'courseCode'" (click)="changeSortOrder('courseCode')">Kurskod
-                    @if (sortBy() === "courseCode"){
-                    <span class="material-symbols-outlined">
-                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
-                    </span>
-                    }@else {
-                    <span class="material-symbols-outlined inactive">swap_vert</span>
-                    }
-                </button>
-                <button class="sort-button" [class.active]="sortBy() === 'courseName'"  (click)="changeSortOrder('courseName')">Kursnamn
-                    @if (sortBy() === "courseName"){
-                    <span class="material-symbols-outlined">
-                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
-                    </span>
-                    }@else {
-                    <span class="material-symbols-outlined inactive">swap_vert</span>
-                    }
-                </button>
-                <button class="sort-button" [class.active]="sortBy() === 'points'"  (click)="changeSortOrder('points')">Poäng
-                    @if (sortBy() === "points"){
-                    <span class="material-symbols-outlined">
-                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
-                    </span>
-                    }@else {
-                    <span class="material-symbols-outlined inactive">swap_vert</span>
-                    }
-                </button>
-                <button class="sort-button" [class.active]="sortBy() === 'subject'"  (click)="changeSortOrder('subject')">Ämne
-                    @if (sortBy() === "subject"){
-                    <span class="material-symbols-outlined">
-                        {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
-                    </span>
-                    }@else {
-                    <span class="material-symbols-outlined inactive">swap_vert</span>
-                    }
-                </button>
-            </div>
-    
 
         <!-- Antal kurser som visas-->
         @if(!error()) {
@@ -113,8 +115,11 @@
         <article class="course-card">
             <div class="card-header">
                 <span class="badge">{{course.points}} HP</span>
-                <button class="add" aria-label="Lägg till i ramschema">
-                    <span class="material-symbols-outlined">add</span>
+                <button class="add"  [class.added-course]="scheduleService.isCourseInSchedule(course.courseCode)" 
+                (click)="scheduleService.toggleCourseStatus(course)" 
+                [attr.aria-label]="scheduleService.isCourseInSchedule(course.courseCode) ? 'Ta bort kurs ' + course.courseCode : 'Lägg till kurs ' + course.courseCode">
+                
+                    <span class="material-symbols-outlined">{{scheduleService.isCourseInSchedule(course.courseCode) ? "remove" :"add" }}</span>
                 </button>
             </div>
             <h3><span class="code">{{course.courseCode}}</span> {{course.courseName}}</h3>

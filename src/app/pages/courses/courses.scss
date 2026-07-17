@@ -1,6 +1,8 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
+
+
 //Sidlayout
 .page-course {
     display: flex;
@@ -214,7 +216,7 @@
             }
 
             &:hover {
-                background-color: rgba($border-light, 0.2);
+                background-color: rgba($border-light, 0.25);
             }
 
             &.active {
@@ -222,7 +224,7 @@
                 border: 1px solid $badge-border;
 
                 &:hover {
-                    background-color: darken($primary-color, 20%);
+                    background-color: $primary-dark-color;
                 }
             }
 
@@ -290,9 +292,21 @@
                     transition: all 0.2s ease;
 
                     &:hover {
-                        background-color: rgba(255, 255, 255, 0.25);
-                        border: 1px solid $text-light;
+                        background-color: $add-button;
+                        border: 1.1px solid $add-button-border;
                         transform: scale(1.05);
+                    }
+
+                    &.added-course {
+                        background-color: $remove-button;
+                        border: 1px solid $remove-button-border;
+                         
+
+
+                         &:hover {
+                            border: 1.1px solid $remove-button-border;
+                            transform: scale(1.05);
+                         }
                     }
 
                 }

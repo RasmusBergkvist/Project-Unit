@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Course } from '../../models/course.interface';
 import { CourseService } from '../../services/course.service';
 import { FormsModule } from '@angular/forms';
+import { ScheduleService } from '../../services/schedule.service';
 
 @Component({
   selector: 'app-courses',
@@ -25,11 +26,11 @@ export class CoursesComponent {
   sortDirection = signal<"asc" | "desc">("asc");
 
 
-  //Läser in service
+  //Läser in services
   courseService = inject(CourseService);
+  scheduleService = inject(ScheduleService);
 
-
-
+  
   //Filtrerar kurser baserat på söktext, valt ämne och nivå
   filterAndSortCourses = computed(() => {
 
@@ -136,6 +137,8 @@ export class CoursesComponent {
       this.selectedLevels.set([...levels, level]);
     }
   }
+
+
 
 
   //Anropar loadCourses

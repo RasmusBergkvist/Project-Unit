@@ -1,1 +1,78 @@
-<p>schedule works!</p>
+<div class="page-schedule">
+
+    <section class="top-section">
+        <h2>Ramschema</h2>
+        <p>Här hittar du alla kurser som är sparat till ditt ramschema.</p>
+
+        <!-- Antal kurser och poäng i ramschemat -->
+        <div class="total-container">
+            @if(totalCourses()) {
+            <p class="total-courses">Antal kurser: {{totalCourses()}}</p>
+            }
+
+            @if(totalPoints()) {
+            <p class="total-points">Antal poäng: {{totalPoints()}} HP</p>
+            }
+
+        </div>
+
+    </section>
+
+    <!-- Loopar igenom varje unikt ämne och skapar en rubrik till respektive ämne) -->
+    @for(subject of mySubjects(); track subject) {
+
+    <h2 class="subject-title"> {{subject}} </h2>
+
+    <section class="schedule-container">
+        <!-- Loopar igenom alla sparade kurser i schemat -->
+        @for(course of mySchedule(); track course.courseCode ) {
+
+        <!-- Kontroll att bara kurser som matchar rätt ämnesområden visas -->
+        @if(course.subject === subject) {
+        <article class="course-card">
+            <div class="card-header">
+                <span class="badge">{{course.points}} HP</span>
+                <button class="course-button added-course" (click)="scheduleService.removeCourse(course.courseCode)"
+                    [attr.aria-label]=" 'Ta bort kurs ' + course.courseCode">
+                    <span class="material-symbols-outlined">remove</span>
+                </button>
+            </div>
+            <h3><span class="code">{{course.courseCode}}</span> {{course.courseName}}</h3>
+
+            <ul class="course-info">
+                <li><strong>Ämne:</strong> {{course.subject}} ({{course.subjectCode}})</li>
+
+                <!--Skriver ut förkortningar på nivå -->
+                @if(course.level === "BE") {
+                <li><strong>Nivå: </strong> Behörighetsgivande</li>
+                }
+                @else if(course.level === "GR") {
+                <li><strong>Nivå: </strong> Grundläggande</li>
+                }
+                @else if(course.level === "AV") {
+                <li><strong>Nivå: </strong> Avancerad</li>
+                }
+                @else if(course.level === "FO") {
+                <li><strong>Nivå: </strong> Forskarnivå</li>
+                }
+                @else if(course.level) {
+                <li><strong>Nivå: </strong> {{course.level}}</li>
+                }
+
+                <li><strong>Progression: </strong>{{course.progression}}</li>
+                <li><strong>Institution: </strong>{{course.institutionCode}}</li>
+            </ul>
+            <a [href]="course.syllabus" target="_blank" rel="noopener noreferrer">Visa kursplan</a>
+        </article>
+
+        }
+
+        }
+
+    </section>
+
+    } @empty {
+        <p class="empty-schedule">Ditt ramshema är tomt. <a routerLink="/courses">Lägg till kurser.</a></p>
+    }
+
+</div>

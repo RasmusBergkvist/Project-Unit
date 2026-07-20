@@ -115,7 +115,7 @@
         <article class="course-card">
             <div class="card-header">
                 <span class="badge">{{course.points}} HP</span>
-                <button class="add"  [class.added-course]="scheduleService.isCourseInSchedule(course.courseCode)" 
+                <button class="course-button"  [class.added-course]="scheduleService.isCourseInSchedule(course.courseCode)" 
                 (click)="scheduleService.toggleCourseStatus(course)" 
                 [attr.aria-label]="scheduleService.isCourseInSchedule(course.courseCode) ? 'Ta bort kurs ' + course.courseCode : 'Lägg till kurs ' + course.courseCode">
                 

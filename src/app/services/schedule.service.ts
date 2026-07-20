@@ -67,7 +67,7 @@ export class ScheduleService {
   //Ladda schema från Local Storage
   private loadSchedule(): Course[] {
     const data = localStorage.getItem("schedule");
-    return data ? JSON.parse(data) : []
+    return data ? JSON.parse(data) : [];
   }
 
 

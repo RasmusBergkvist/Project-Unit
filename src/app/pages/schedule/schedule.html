@@ -6,14 +6,8 @@
 
         <!-- Antal kurser och poäng i ramschemat -->
         <div class="total-container">
-            @if(totalCourses()) {
             <p class="total-courses">Antal kurser: {{totalCourses()}}</p>
-            }
-
-            @if(totalPoints()) {
             <p class="total-points">Antal poäng: {{totalPoints()}} HP</p>
-            }
-
         </div>
 
     </section>
@@ -72,7 +66,13 @@
     </section>
 
     } @empty {
-        <p class="empty-schedule">Ditt ramshema är tomt. <a routerLink="/courses">Lägg till kurser.</a></p>
+    <p class="empty-schedule">Ditt ramshema är tomt. <a routerLink="/courses">Lägg till kurser.</a></p>
+    }
+
+    <!-- Rensa hela ramschemat -->
+    @if(totalCourses() > 0) {
+    <button class="clear-button" (click)="scheduleService.clearSchedule()"><span
+            class="material-symbols-outlined">delete_sweep</span>Rensa ramschema</button>
     }
 
 </div>

@@ -55,12 +55,19 @@ export class ScheduleService {
     });
   }
 
+
   //Växlar mellan lägg till och ta bort
   toggleCourseStatus(course: Course): void {
     const courseAdded = this.isCourseInSchedule(course.courseCode);
 
     //Om kursen redan finns tillagd anropas removeCourse, annars körs addCourse.
     courseAdded ? this.removeCourse(course.courseCode) : this.addCourse(course);
+  }
+
+
+  //Rensa hela ramschemat
+  clearSchedule():void {
+    this.schedule.set([]);
   }
 
 

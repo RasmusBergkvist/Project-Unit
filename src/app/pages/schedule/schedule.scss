@@ -81,5 +81,33 @@
         }
     }
 
+    .clear-button {
+    display: flex;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    gap: 6px;
+    padding: 10px 16px;
+    background-color: $remove-button;
+    color: $text-light;
+    cursor: pointer;
+    border-radius: 12px;
+    border: none;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        background-color: rgb(147, 69, 69);
+        box-shadow: 0 0 20px rgba(136, 63, 63, 0.4);
+    }
+
+    .material-symbols-outlined {
+        font-size: 24px;
+
+
+    }
+    }
+
 
 }

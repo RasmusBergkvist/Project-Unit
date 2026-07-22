@@ -188,45 +188,8 @@
 
             }
 
-
-        }
-
-        //Sorteringsknappar
-        .sort-button {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 12px;
-            background-color: transparent;
-            color: $text-light;
-            font-family: "Roboto", sans-serif;
-            border: 1px solid $border-light;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-
-            .material-symbols-outlined {
-                font-size: 18px;
-
-                &.inactive {
-                    opacity: 0.6;
-                }
-            }
-
-            &:hover {
-                background-color: rgba($border-light, 0.25);
-            }
-
-            &.active {
-                background-color: $primary-color;
-                border: 1px solid $badge-border;
-
-                &:hover {
-                    background-color: $primary-dark-color;
-                }
-            }
-
-
+            //Sorteringsknappar
+            @include sort-buttons;
         }
 
     }
@@ -238,12 +201,9 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         width: 100%;
-        gap: 1rem;
+        gap: 20px;
 
         @include course-cards;
-
-        
-
 
 
     }

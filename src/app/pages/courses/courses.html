@@ -58,40 +58,40 @@
         <!-- Sortering i stigande och fallande ordning -->
         <div class="sort-container">
             <h3>Sortera efter</h3>
-            <button class="sort-button" [class.active]="sortBy() === 'courseCode'"
-                (click)="changeSortOrder('courseCode')">Kurskod
-                @if (sortBy() === "courseCode"){
+            <button class="sort-button" [class.active]="sortService.sortBy() === 'courseCode'"
+                (click)="sortService.changeSortOrder('courseCode')">Kurskod
+                @if (sortService.sortBy() === "courseCode"){
                 <span class="material-symbols-outlined">
-                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
                 </span>
                 }@else {
                 <span class="material-symbols-outlined inactive">swap_vert</span>
                 }
             </button>
-            <button class="sort-button" [class.active]="sortBy() === 'courseName'"
-                (click)="changeSortOrder('courseName')">Kursnamn
-                @if (sortBy() === "courseName"){
+            <button class="sort-button" [class.active]="sortService.sortBy() === 'courseName'"
+                (click)="sortService.changeSortOrder('courseName')">Kursnamn
+                @if (sortService.sortBy() === "courseName"){
                 <span class="material-symbols-outlined">
-                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
                 </span>
                 }@else {
                 <span class="material-symbols-outlined inactive">swap_vert</span>
                 }
             </button>
-            <button class="sort-button" [class.active]="sortBy() === 'points'" (click)="changeSortOrder('points')">Poäng
-                @if (sortBy() === "points"){
+            <button class="sort-button" [class.active]="sortService.sortBy() === 'points'" (click)="sortService.changeSortOrder('points')">Poäng
+                @if (sortService.sortBy() === "points"){
                 <span class="material-symbols-outlined">
-                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
                 </span>
                 }@else {
                 <span class="material-symbols-outlined inactive">swap_vert</span>
                 }
             </button>
-            <button class="sort-button" [class.active]="sortBy() === 'subject'"
-                (click)="changeSortOrder('subject')">Ämne
-                @if (sortBy() === "subject"){
+            <button class="sort-button" [class.active]="sortService.sortBy() === 'subject'"
+                (click)="sortService.changeSortOrder('subject')">Ämne
+                @if (sortService.sortBy() === "subject"){
                 <span class="material-symbols-outlined">
-                    {{sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
+                    {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
                 </span>
                 }@else {
                 <span class="material-symbols-outlined inactive">swap_vert</span>

@@ -1,6 +1,5 @@
 import { effect, Injectable, signal } from '@angular/core';
 import { Course } from '../models/course.interface';
-import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

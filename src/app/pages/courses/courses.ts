@@ -3,12 +3,14 @@ import { Course } from '../../models/course.interface';
 import { CourseService } from '../../services/course.service';
 import { FormsModule } from '@angular/forms';
 import { ScheduleService } from '../../services/schedule.service';
+import { SortService } from '../../services/sort.service';
 
 @Component({
   selector: 'app-courses',
   imports: [FormsModule],
   templateUrl: './courses.html',
   styleUrl: './courses.scss',
+  providers: [SortService]
 })
 export class CoursesComponent {
 
@@ -29,6 +31,7 @@ export class CoursesComponent {
   //Läser in services
   courseService = inject(CourseService);
   scheduleService = inject(ScheduleService);
+  sortService = inject(SortService);
 
   
   //Filtrerar kurser baserat på söktext, valt ämne och nivå
@@ -43,14 +46,10 @@ export class CoursesComponent {
     //Hämtar valda nivåer
     const levels = this.selectedLevels();
 
-
     let courses = this.courses();
 
-    //Hämtar vilket fält som ska sorteras och i vilken riktning
-    const sortBy = this.sortBy();
-    const sortDirection = this.sortDirection();
 
-    //Filtrering på kurskod och kursnamn
+    //Filtrering efter kurskod och kursnamn
     if (filter) {
       courses = courses.filter(c =>
         c.courseCode.toLowerCase().includes(filter) ||
@@ -58,45 +57,26 @@ export class CoursesComponent {
       );
     }
 
-    //Filtrering på ämne
+    //Filtrering efter ämne
     if (subject) {
       courses = courses.filter(c =>
         c.subject === subject
       );
     }
 
-    //Filtrering på nivå
+    //Filtrering efter nivå
     if (levels.length > 0) {
       courses = courses.filter(c =>
         levels.includes(c.level)
       );
     }
 
-    //Skapar kopia av kurserna till sorteringen
-    const sortedCourses = [...courses];
+    //Hämtar sorterade kurser från service
+    const sortedCourses = this.sortService.sortCourses(courses);
 
-    //Sorterar kurserna efter valt fält
-    sortedCourses.sort((a, b) => {
-
-      //Sortering efter tal
-      if (sortBy === "points") {
-        return sortDirection === "asc"
-          ? a.points - b.points : b.points - a.points
-      }
-
-
-      //Sortering efter strängar
-      const sortA = a[sortBy];
-      const sortB = b[sortBy];
-
-      //Jämför kurserna och sorterar i fallande eller stigande ordning.
-      return sortDirection === "asc"
-        ? sortA.localeCompare(sortB) : sortB.localeCompare(sortA);
-
-    });
-
-    //Returnerar de sorterade kurserna
+    //Retunerar arrayen med de sorterade kurserna
     return sortedCourses;
+
   });
 
   //Lista med alla unika ämnen till select
@@ -108,19 +88,6 @@ export class CoursesComponent {
   });
 
 
-  //Ändrar sorteringsfält och sorteringsordning
-  changeSortOrder(sortField: "courseCode" | "courseName" | "points" | "subject") {
-    if (this.sortBy() === sortField) {
-      //Uppdaterar sorteringen och växlar mellan stigande och fallande ordning
-      this.sortDirection.update(sortOrder => sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      //Byter sorteringsfält
-      this.sortBy.set(sortField);
-      //Återställer sortering till stigande ordning
-      this.sortDirection.set("asc")
-    }
-
-  }
 
   //Ändrar valda nivåer
   changeLevels(level: string) {

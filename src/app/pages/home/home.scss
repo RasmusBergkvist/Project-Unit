@@ -51,21 +51,26 @@
     margin: 30px auto;
     max-width: 800px;
     width: 100%;
+    text-align: center;
 
     h2 {
-        text-align: center;
         margin-bottom: 30px;
         color: $primary-color;
     }
+
+      .error {
+            @include error-message;
+        }
 
     .fact-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 40px;
+
     }
 
+
     .fact-card {
-        text-align: center;
         padding: 16px 24px;
         width: 100%;
         background-color: $primary-color;
@@ -161,8 +166,8 @@
 //Surfplattor
 @media(max-width: 1024px) {
     .about {
-    grid-template-columns: 1fr 350px;
-     gap: 20px;
+        grid-template-columns: 1fr 350px;
+        gap: 20px;
 
     }
 

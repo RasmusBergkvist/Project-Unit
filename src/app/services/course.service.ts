@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Course } from '../models/course.interface';
 import { firstValueFrom } from 'rxjs';
 
@@ -11,9 +11,21 @@ export class CourseService {
 
   http = inject(HttpClient);
 
+  //Signals
+  courses = signal<Course[]>([]);
+
+
   //Hämtar kurserna 
   async getCourses(): Promise<Course[]> {
     const courses = this.http.get<Course[]>(this.url)
     return await firstValueFrom(courses);
   }
+
+  //Laddar kurserna
+  async loadCourses() {
+    const response = await this.getCourses();
+    this.courses.set(response);
+
+  }
+
 }

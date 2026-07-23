@@ -102,7 +102,7 @@
 
         <!-- Antal kurser som visas-->
         @if(!error()) {
-        <p>Visar {{filterAndSortCourses().length}} av {{courses().length}} kurser.</p>
+        <p>Visar {{filterAndSortCourses().length}} av {{courseService.courses().length}} kurser.</p>
         }
 
     </section>

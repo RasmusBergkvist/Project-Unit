@@ -1,5 +1,4 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { Course } from '../../models/course.interface';
 import { CourseService } from '../../services/course.service';
 import { FormsModule } from '@angular/forms';
 import { ScheduleService } from '../../services/schedule.service';
@@ -13,9 +12,7 @@ import { SortService } from '../../services/sort.service';
   providers: [SortService]
 })
 export class CoursesComponent {
-
-  //Signals
-  courses = signal<Course[]>([]);
+  //Signal error
   error = signal<string | null>(null);
 
   //Signals filtrering
@@ -46,7 +43,7 @@ export class CoursesComponent {
     //Hämtar valda nivåer
     const levels = this.selectedLevels();
 
-    let courses = this.courses();
+    let courses = this.courseService.courses();
 
 
     //Filtrering efter kurskod och kursnamn
@@ -81,7 +78,7 @@ export class CoursesComponent {
 
   //Lista med alla unika ämnen till select
   allSubjects = computed(() => {
-    const subjects = [... new Set(this.courses().map(course => course.subject))].sort();
+    const subjects = [... new Set(this.courseService.courses().map(course => course.subject))].sort();
 
     return subjects;
 
@@ -106,25 +103,14 @@ export class CoursesComponent {
   }
 
 
-
-
   //Anropar loadCourses
-  ngOnInit() {
-    this.loadCourses();
-
-  }
-
-  //Laddar kurserna
-  async loadCourses() {
+  async ngOnInit() {
     try {
-      const response = await this.courseService.getCourses();
-      this.courses.set(response);
-    } catch (error) {
-      console.error(error)
-      this.error.set("Kurserna kunde inte laddas. Försök igen senare")
+      await this.courseService.loadCourses();
+    } catch(error) {
+      this.error.set("Kurserna kunde inte laddas. Försök igen senare.");
     }
 
   }
-
 
 }

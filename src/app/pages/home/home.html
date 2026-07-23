@@ -11,17 +11,30 @@
 
 <section class="fact">
     <h2>Snabbfakta</h2>
+
+    @if(error()) {
+    <div class="error">
+        <span class="material-symbols-outlined">
+            error
+        </span>
+        <p class="error-text">{{error()}}</p>
+    </div>
+
+    } @else {
     <div class="fact-container">
+
         <div class="fact-card">
-            <p>Över 4000 kurser</p>
+            <p>{{courseService.courses().length}} kurser</p>
         </div>
         <div class="fact-card">
-            <p>XX olika ämnen</p>
+            <p>{{allSubjects()}} olika ämnen</p>
         </div>
         <div class="fact-card">
             <p>15 000 studenter</p>
         </div>
     </div>
+    }
+
 
 </section>
 

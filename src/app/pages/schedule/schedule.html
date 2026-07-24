@@ -57,7 +57,7 @@
 
         <!-- Kontroll att bara kurser som matchar rätt ämnesområden visas -->
         @if(course.subject === subject) {
-        <article class="course-card">
+        <article class="course-card" [id]="course.courseCode">
             <div class="card-header">
                 <span class="badge">{{course.points}} HP</span>
                 <button class="course-button added-course" (click)="scheduleService.removeCourse(course.courseCode)"

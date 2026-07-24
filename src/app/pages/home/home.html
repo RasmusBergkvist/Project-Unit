@@ -40,23 +40,21 @@
 
 <section class="index-schedule">
     <h2>Mitt ramschema</h2>
+    @if(mySchedule().length > 0) {
+    <p>Klicka på kurserna för att för mer information.</p>
+    }
     <div class="schedule-container">
-
+        @for(course of mySchedule(); track course.courseCode) {
         <article class="schedule-card">
-            <span>DT208G</span>
-            <h3>Programmering i TypeScript</h3>
+            <a routerLink="/schedule" [fragment]="course.courseCode">
+                <span>{{course.courseCode}}</span>
+                <h3>{{course.courseName}}</h3>
+            </a>
         </article>
+        } @empty {
+        <p>Ditt ramshema är tomt. <a routerLink="/courses">Lägg till kurser.</a></p>
+        }
 
-        <article class="schedule-card">
-            <span>DT207G</span>
-            <h3>Backend-baserad webbutveckling</h3>
-
-        </article>
-
-        <article class="schedule-card">
-            <span>DT211G</span>
-            <h3>Frontend-baserad webbutveckling</h3>
-        </article>
 
     </div>
 </section>

@@ -29,14 +29,11 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles-partials"
-            ]
-          }
+              "includePaths": ["src/styles-partials"]
+            },
+            "polyfills": ["@angular/localize/init"]
           },
           "configurations": {
             "production": {

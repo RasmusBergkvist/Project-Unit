@@ -1,5 +1,7 @@
 @use 'variables' as *;
 @use 'mixins' as *;
+@use '@angular/material' as mat;
+
 
 //Sidlayout
 .page-course {
@@ -187,6 +189,32 @@
         @include course-cards;
 
 
+        .no-match {
+            margin: 0 auto;
+            text-align: center;
+            background-color: $badge;
+            border: 1px solid $badge-border;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+
+    }
+
+    //Paginering
+    .paginator-container {
+        margin: 1rem auto;
+        border-radius: 12px;
+        border: 1px solid $badge-border;
+        overflow: hidden;
+
+
+        @include mat.paginator-overrides((container-background-color: $secondary-color,
+                container-text-color: $text-light,
+                container-text-size: 14px,
+                enabled-icon-color: $text-light,
+                disabled-icon-color: rgba($text-light, 0.3)));
     }
 
 

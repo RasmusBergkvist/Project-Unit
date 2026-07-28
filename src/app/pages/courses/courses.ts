@@ -3,10 +3,12 @@ import { CourseService } from '../../services/course.service';
 import { FormsModule } from '@angular/forms';
 import { ScheduleService } from '../../services/schedule.service';
 import { SortService } from '../../services/sort.service';
+import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-courses',
-  imports: [FormsModule],
+  imports: [FormsModule, MatPaginatorModule],
   templateUrl: './courses.html',
   styleUrl: './courses.scss',
   providers: [SortService]
@@ -23,6 +25,10 @@ export class CoursesComponent {
   //Signals sortering
   sortBy = signal<"courseCode" | "courseName" | "points" | "subject">("courseCode");
   sortDirection = signal<"asc" | "desc">("asc");
+
+  //Signal pagination
+  pageIndex = signal<number>(0);
+  pageSize = signal<number>(30);
 
 
   //Läser in services
@@ -76,6 +82,36 @@ export class CoursesComponent {
 
   });
 
+  //Filtrerar antal kurser per sidan
+  paginationFilter = computed(() => {
+    
+    //Sidans start- och slutpunkt.
+    const start = this.pageIndex() * this.pageSize();
+    const end = start + this.pageSize();
+
+    //Hämtar kurserna som matchar sidans start- och slutpunkt.
+    const coursesOnPage = this.filterAndSortCourses().slice(start, end);
+
+    return coursesOnPage;
+  });
+
+
+  //Hanterar paginatorns sidbyten
+  handlePageEvent(event: PageEvent) {
+    
+    //Uppdatera aktuell sida
+    this.pageIndex.set(event.pageIndex);
+
+    //Skrollar till toppen av sidan
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+
+
   //Lista med alla unika ämnen till select
   allSubjects = computed(() => {
     const subjects = [... new Set(this.courseService.courses().map(course => course.subject))].sort();
@@ -100,6 +136,14 @@ export class CoursesComponent {
       //Lägger till vald nivå
       this.selectedLevels.set([...levels, level]);
     }
+
+  
+   
+  }
+
+  //Återgår till första sidan vid ändrat filtreringsvärder
+  resetPagination() {
+    this.pageIndex.set(0);
   }
 
 

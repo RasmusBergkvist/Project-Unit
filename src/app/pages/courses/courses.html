@@ -17,12 +17,12 @@
 
             <!-- Filtrering på kurskod och kursnamn-->
             <label>
-                <input type="text" [(ngModel)]="filterText">
+                <input type="text" [(ngModel)]="filterText" (ngModelChange)="resetPagination()">
                 <span [class.searching]="filterText()">Sök kurs</span>
             </label>
 
             <!-- Filtrering på ämnen-->
-            <select [(ngModel)]="selectedSubject">
+            <select [(ngModel)]="selectedSubject" (ngModelChange)="resetPagination()">
                 <option value="">Alla ämnen</option>
                 @for(subject of allSubjects(); track subject) {
                 <option [value]="subject">{{subject}}</option>
@@ -33,23 +33,23 @@
         <!-- Filtrering på nivå-->
         <div class="level-container">
             <label>
-                <input type="checkbox" (change)="changeLevels('BE')">
+                <input type="checkbox" (change)="changeLevels('BE'); resetPagination()">
                 Behörighetsgivande
             </label>
             <label>
-                <input type="checkbox" (change)="changeLevels('GR')">
+                <input type="checkbox" (change)="changeLevels('GR'); resetPagination()">
                 Grundläggande
             </label>
             <label>
-                <input type="checkbox" (change)="changeLevels('AV')">
+                <input type="checkbox" (change)="changeLevels('AV'); resetPagination()">
                 Avancerad
             </label>
             <label>
-                <input type="checkbox" (change)="changeLevels('FO')">
+                <input type="checkbox" (change)="changeLevels('FO'); resetPagination()">
                 Forskarnivå
             </label>
             <label>
-                <input type="checkbox" (change)="changeLevels('X')">
+                <input type="checkbox" (change)="changeLevels('X'); resetPagination()">
                 Övriga nivåer
             </label>
         </div>
@@ -59,7 +59,7 @@
         <div class="sort-container">
             <h3>Sortera efter</h3>
             <button class="sort-button" [class.active]="sortService.sortBy() === 'courseCode'"
-                (click)="sortService.changeSortOrder('courseCode')">Kurskod
+                (click)="sortService.changeSortOrder('courseCode'); resetPagination()">Kurskod
                 @if (sortService.sortBy() === "courseCode"){
                 <span class="material-symbols-outlined">
                     {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
@@ -69,7 +69,7 @@
                 }
             </button>
             <button class="sort-button" [class.active]="sortService.sortBy() === 'courseName'"
-                (click)="sortService.changeSortOrder('courseName')">Kursnamn
+                (click)="sortService.changeSortOrder('courseName'); resetPagination()">Kursnamn
                 @if (sortService.sortBy() === "courseName"){
                 <span class="material-symbols-outlined">
                     {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
@@ -78,7 +78,8 @@
                 <span class="material-symbols-outlined inactive">swap_vert</span>
                 }
             </button>
-            <button class="sort-button" [class.active]="sortService.sortBy() === 'points'" (click)="sortService.changeSortOrder('points')">Poäng
+            <button class="sort-button" [class.active]="sortService.sortBy() === 'points'"
+                (click)="sortService.changeSortOrder('points'); resetPagination()">Poäng
                 @if (sortService.sortBy() === "points"){
                 <span class="material-symbols-outlined">
                     {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
@@ -88,7 +89,7 @@
                 }
             </button>
             <button class="sort-button" [class.active]="sortService.sortBy() === 'subject'"
-                (click)="sortService.changeSortOrder('subject')">Ämne
+                (click)="sortService.changeSortOrder('subject'); resetPagination()">Ämne
                 @if (sortService.sortBy() === "subject"){
                 <span class="material-symbols-outlined">
                     {{sortService.sortDirection() === "asc" ? "arrow_upward" : "arrow_downward"}}
@@ -110,16 +111,18 @@
 
 
     <section class="course-container">
-        @for(course of filterAndSortCourses(); track course.courseCode + course.subjectCode) {
+        @for(course of paginationFilter(); track course.courseCode + course.subjectCode) {
         <!-- Här skrivs kurserna ut-->
         <article class="course-card">
             <div class="card-header">
                 <span class="badge">{{course.points}} HP</span>
-                <button class="course-button"  [class.added-course]="scheduleService.isCourseInSchedule(course.courseCode)" 
-                (click)="scheduleService.toggleCourseStatus(course)" 
-                [attr.aria-label]="scheduleService.isCourseInSchedule(course.courseCode) ? 'Ta bort kurs ' + course.courseCode : 'Lägg till kurs ' + course.courseCode">
-                
-                    <span class="material-symbols-outlined">{{scheduleService.isCourseInSchedule(course.courseCode) ? "remove" :"add" }}</span>
+                <button class="course-button"
+                    [class.added-course]="scheduleService.isCourseInSchedule(course.courseCode)"
+                    (click)="scheduleService.toggleCourseStatus(course)"
+                    [attr.aria-label]="scheduleService.isCourseInSchedule(course.courseCode) ? 'Ta bort kurs ' + course.courseCode : 'Lägg till kurs ' + course.courseCode">
+
+                    <span class="material-symbols-outlined">{{scheduleService.isCourseInSchedule(course.courseCode) ?
+                        "remove" :"add" }}</span>
                 </button>
             </div>
             <h3><span class="code">{{course.courseCode}}</span> {{course.courseName}}</h3>
@@ -152,9 +155,20 @@
         } @empty {
         <!-- Om sökning inte matchar kursnamn eller kurskod-->
         @if(!error()) {
-        <p class="no-match">Inga kurser hittades som matchar: {{filterText()}}</p>
+        <p class="no-match">Inga kurser hittades som matchar {{filterText()}}</p>
         }
+
+
         }
 
     </section>
+
+    <!-- Paginering-->
+    <nav class="paginator-container">
+        <mat-paginator [length]="filterAndSortCourses().length" [pageSize]="pageSize()" [pageIndex]="pageIndex()"
+            (page)="handlePageEvent($event)" hidePageSize="true" [showFirstLastButtons]="true" aria-label="Välj sida">
+        </mat-paginator>
+    </nav>
+
+
 </div>

@@ -177,6 +177,22 @@
 
     }
 
+    
+        .loading-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            .material-symbols-outlined {
+                position: absolute;
+                color: white;
+                font-size: 39px;
+            }
+
+                @include mat.progress-spinner-overrides((active-indicator-color: $primary-color));
+        }
+
 
 
     //Kurslista
@@ -199,23 +215,24 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
-
     }
 
-    //Paginering
-    .paginator-container {
-        margin: 1rem auto;
-        border-radius: 12px;
-        border: 1px solid $badge-border;
-        overflow: hidden;
 
 
-        @include mat.paginator-overrides((container-background-color: $secondary-color,
-                container-text-color: $text-light,
-                container-text-size: 14px,
-                enabled-icon-color: $text-light,
-                disabled-icon-color: rgba($text-light, 0.3)));
-    }
+}
 
+//Paginering
+.paginator-container {
+    margin: 1rem auto;
+    border-radius: 12px;
+    border: 1px solid $badge-border;
+    overflow: hidden;
+
+
+    @include mat.paginator-overrides((container-background-color: $secondary-color,
+            container-text-color: $text-light,
+            container-text-size: 14px,
+            enabled-icon-color: $text-light,
+            disabled-icon-color: rgba($text-light, 0.3)));
 
 }

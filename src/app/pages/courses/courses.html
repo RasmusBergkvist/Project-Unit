@@ -102,15 +102,29 @@
 
 
         <!-- Antal kurser som visas-->
-        @if(!error()) {
+        @if(!error() && !loading()) {
         <p>Visar {{filterAndSortCourses().length}} av {{courseService.courses().length}} kurser.</p>
         }
 
     </section>
 
+    <!-- Spinner visas med kurser laddas -->
+    @if(loading()) {
+    <div class="loading-container">
+        <span class="material-symbols-outlined">
+            menu_book
+        </span>
+        <mat-spinner [diameter]="100"></mat-spinner>
+    </div>
+    }
+
+    <!-- Visas endast när kurser har laddats klart och inga felmeddeladen förekommer-->
+    @if(!loading() && !error()) {
 
 
     <section class="course-container">
+
+
         @for(course of paginationFilter(); track course.courseCode + course.subjectCode) {
         <!-- Här skrivs kurserna ut-->
         <article class="course-card">
@@ -158,7 +172,6 @@
         <p class="no-match">Inga kurser hittades som matchar {{filterText()}}</p>
         }
 
-
         }
 
     </section>
@@ -169,6 +182,6 @@
             (page)="handlePageEvent($event)" hidePageSize="true" [showFirstLastButtons]="true" aria-label="Välj sida">
         </mat-paginator>
     </nav>
-
+    }
 
 </div>

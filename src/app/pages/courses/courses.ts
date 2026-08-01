@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ScheduleService } from '../../services/schedule.service';
 import { SortService } from '../../services/sort.service';
 import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @Component({
   selector: 'app-courses',
-  imports: [FormsModule, MatPaginatorModule],
+  imports: [FormsModule, MatPaginatorModule, MatProgressSpinnerModule],
   templateUrl: './courses.html',
   styleUrl: './courses.scss',
   providers: [SortService]
@@ -16,6 +17,7 @@ import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 export class CoursesComponent {
   //Signal error
   error = signal<string | null>(null);
+  loading = signal(false);
 
   //Signals filtrering
   filterText = signal<string>("");
@@ -149,10 +151,15 @@ export class CoursesComponent {
 
   //Anropar loadCourses
   async ngOnInit() {
+    //Ändra loading till true för att visa spinner
+    this.loading.set(true);
     try {
       await this.courseService.loadCourses();
     } catch(error) {
       this.error.set("Kurserna kunde inte laddas. Försök igen senare.");
+    } finally {
+      //Sätter loading till false för att dölja spinner
+      this.loading.set(false);
     }
 
   }

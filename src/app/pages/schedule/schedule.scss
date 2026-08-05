@@ -10,6 +10,9 @@
     padding-inline: 1rem;
     margin: 30px auto;
 
+    /**********************************************************/
+    /**  Övre sektion med sortering, antal poäng och kurser **/
+    /********************************************************/
     .top-section {
         display: flex;
         flex-direction: column;
@@ -65,7 +68,9 @@
     }
 
 
-    //Design ramschemat
+    /************************************************/
+    /*****************  Ramschema ******************/
+    /**********************************************/
     .schedule-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

@@ -1,6 +1,8 @@
 {
-  "name": "Project-Unit",
-  "short_name": "Project-Unit",
+  "name": "University of TypeScript",
+  "short_name": "UNIT",
+  "background_color": "#070D1A",
+  "description": "App till ett fiktivt lärosäte",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
@@ -12,7 +14,7 @@
       "purpose": "maskable any"
     },
     {
-      "src": "icons/icon-96x96.png",
+      "src": "icons/favicon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "maskable any"
@@ -35,6 +37,12 @@
       "type": "image/png",
       "purpose": "maskable any"
     },
+     {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable any"
+     },           
     {
       "src": "icons/icon-192x192.png",
       "sizes": "192x192",

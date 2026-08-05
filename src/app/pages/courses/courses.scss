@@ -12,8 +12,10 @@
     padding-inline: 1rem;
     gap: 20px;
 
-
-    //Övre sektion med sortering och filtering
+    /************************************************/
+    /**  Övre sektion med sortering och filtering **/
+    /**********************************************/
+    //
     .top-section {
         display: flex;
         flex-direction: column;
@@ -177,25 +179,29 @@
 
     }
 
-    
-        .loading-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+    /************************************************/
+    /*****************  Loading  *******************/
+    /**********************************************/
+    .loading-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
 
-            .material-symbols-outlined {
-                position: absolute;
-                color: white;
-                font-size: 39px;
-            }
-
-                @include mat.progress-spinner-overrides((active-indicator-color: $primary-color));
+        .material-symbols-outlined {
+            position: absolute;
+            color: white;
+            font-size: 39px;
         }
 
+        @include mat.progress-spinner-overrides((active-indicator-color: $primary-color));
+    }
 
 
-    //Kurslista
+
+    /************************************************/
+    /*****************  Kurslista ******************/
+    /**********************************************/
     .course-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -221,7 +227,10 @@
 
 }
 
-//Paginering
+
+    /************************************************/
+    /*****************  Paginering *****************/
+    /**********************************************/
 .paginator-container {
     margin: 1rem auto;
     border-radius: 12px;

@@ -1,7 +1,7 @@
 <div class="hero">
     <section>
         <h2>Bygg din framtid hos oss</h2>
-        <p>Unit har ett brett utbud av kurserna inom TypeScript och systemdesign till humaniora, språk och
+        <p>Unit har ett brett utbud av digitala kurser inom TypeScript och systemdesign till humaniora, språk och
             företagsekonomi. Vi ger dig verktygen och kunskapen för att växa, utvecklas och lyckas i karriären.</p>
 
         <a routerLink="/courses"><span class="material-symbols-outlined">
@@ -38,6 +38,7 @@
 
 </section>
 
+<!-- Kurser i ramschemat -->
 <section class="index-schedule">
     <h2>Mitt ramschema</h2>
     @if(mySchedule().length > 0) {
@@ -78,5 +79,5 @@
             att ta nästa steg hos oss.
         </p>
     </section>
-    <img src="/university.webp" class="about-img" alt="Drönarbild på UNIT:s campus" width="800" height="599" />
+    <img [src]="'/university.webp'" class="about-img" alt="Drönarbild på UNIT:s campus" width="800" height="599" />
 </div>

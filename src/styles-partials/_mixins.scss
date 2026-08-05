@@ -1,5 +1,6 @@
 @use 'variables' as *;
 
+//Navigering
 @mixin nav-button {
     display: inline-flex;
     align-items: center;
@@ -24,7 +25,7 @@
     }
 }
 
-
+//Navigering mobil
 @mixin mobile-nav-button {
     display: flex;
     flex-direction: column;
@@ -43,6 +44,7 @@
     }
 }
 
+//Kurskort
 @mixin course-cards {
     .course-card {
         display: flex;

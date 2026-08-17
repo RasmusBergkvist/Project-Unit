@@ -2,7 +2,7 @@
   "name": "University of TypeScript",
   "short_name": "UNIT",
   "background_color": "#070D1A",
-  "description": "App till ett fiktivt lärosäte",
+  "description": "App till ett fiktivt lärosäte.",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

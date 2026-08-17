@@ -5,11 +5,12 @@ import { ScheduleService } from '../../services/schedule.service';
 import { SortService } from '../../services/sort.service';
 import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { A11yModule } from "@angular/cdk/a11y";
 
 
 @Component({
   selector: 'app-courses',
-  imports: [FormsModule, MatPaginatorModule, MatProgressSpinnerModule],
+  imports: [FormsModule, MatPaginatorModule, MatProgressSpinnerModule, A11yModule],
   templateUrl: './courses.html',
   styleUrl: './courses.scss',
   providers: [SortService]
@@ -79,7 +80,7 @@ export class CoursesComponent {
     //Hämtar sorterade kurser från service
     const sortedCourses = this.sortService.sortCourses(courses);
 
-    //Retunerar arrayen med de sorterade kurserna
+    //Returnerar arrayen med de sorterade kurserna
     return sortedCourses;
 
   });
@@ -139,8 +140,6 @@ export class CoursesComponent {
       this.selectedLevels.set([...levels, level]);
     }
 
-  
-   
   }
 
   //Återgår till första sidan vid ändrat filtreringsvärder

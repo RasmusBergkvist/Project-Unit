@@ -10,7 +10,7 @@ export class SortService {
   sortDirection = signal<"asc" | "desc">("asc");
 
 
-  //Metod för att soetera kurser
+  //Metod för att sortera kurser
   sortCourses(courses: Course[]) {
 
     //Hämtar vilket fält som ska sorteras och i vilken riktning

@@ -169,7 +169,12 @@
         } @empty {
         <!-- Om sökning inte matchar kursnamn eller kurskod-->
         @if(!error()) {
-        <p class="no-match">Inga kurser hittades som matchar {{filterText()}}</p>
+        @if(filterText()) {
+        <p class="no-match">Inga kurser matchar <strong>{{filterText()}}</strong>. Prova att ändra sökord eller filter.
+        </p>
+        } @else {
+        <p class="no-match">Inga kurser matchar valt filter. Prova att ändra dina val.</p>
+        }
         }
 
         }

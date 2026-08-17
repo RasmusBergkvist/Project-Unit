@@ -18,6 +18,7 @@ Projektet uppfyller samtliga grundläggande krav. Utöver detta har extra funkti
 * PWA.
 
 ## Url till webbplatsen
+https://rb-project-unit.netlify.app/
 
 ## Teknik
 * Ramverk: Angular och Angular Material

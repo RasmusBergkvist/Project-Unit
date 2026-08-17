@@ -22,7 +22,7 @@
             </label>
 
             <!-- Filtrering på ämnen-->
-            <select [(ngModel)]="selectedSubject" (ngModelChange)="resetPagination()">
+            <select [(ngModel)]="selectedSubject" (ngModelChange)="resetPagination()" aria-label="Filtrera på ämne">
                 <option value="">Alla ämnen</option>
                 @for(subject of allSubjects(); track subject) {
                 <option [value]="subject">{{subject}}</option>
